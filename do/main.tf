@@ -47,6 +47,10 @@ variable "size" {
   default = "s-2vcpu-4gb"
 }
 
+variable "server_size" {
+  default = "s-1vcpu-1gb"
+}
+
 variable "docker_version_server" {
   default = "18.09"
 }
@@ -64,7 +68,7 @@ resource "digitalocean_droplet" "rancherserver" {
   image     = "ubuntu-18-04-x64"
   name      = "${var.prefix}-rancherserver"
   region    = var.region
-  size      = var.size
+  size      = var.server_size
   user_data = data.template_file.userdata_server.rendered
   ssh_keys  = var.ssh_keys
 }
